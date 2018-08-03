@@ -40,5 +40,6 @@ spec:
             secretKeyRef:
               name: ecr-aws-credentials
               key: AWS_SECRET_ACCESS_KEY
-      - image: palmstonegames/kubectl-proxy
+      - image: lachlanevenson/k8s-kubectl
         name: kubectl-proxy
+        args: ["proxy", "--port=8001"]

@@ -27,9 +27,20 @@ spec:
         name: ecrupdater
         env:
         - name: K8S_PULL_SECRET_NAME
-          value: ecr
+          valueFrom:
+            configMapKeyRef:
+              name: ecr-updater-config
+              key: aws.secret-name
         - name: AWS_DEFAULT_REGION
-          value: eu-west-1
+          valueFrom:
+            configMapKeyRef:
+              name: ecr-updater-config
+              key: aws.region
+        - name: ECR_UPDATE_INTERVAL
+          valueFrom:
+            configMapKeyRef:
+              name: ecr-updater-config
+              key: ecr-update-interval
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
